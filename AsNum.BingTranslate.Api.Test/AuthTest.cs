@@ -54,5 +54,13 @@ namespace AsNum.BingTranslate.Api.Test {
                 player.Play();
             }
         }
+
+        [TestMethod]
+        public void Detect() {
+            var method = new Detect() {
+                Text = "你好, friend"
+            };
+            var result = ApiClient.ExecuteWrap(method);
+        }
     }
 }

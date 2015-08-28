@@ -86,6 +86,7 @@
     <Compile Include="Methods\Auth.cs" />
     <Compile Include="ApiClient.cs" />
     <Compile Include="MethodBase.cs" />
+    <Compile Include="Methods\Detect.cs" />
     <Compile Include="Methods\GetLanguagesForSpeak.cs" />
     <Compile Include="Methods\GetLanguagesForTranslate.cs" />
     <Compile Include="Methods\Speak.cs">

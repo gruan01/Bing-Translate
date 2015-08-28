@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AsNum.BingTranslate.Api.Methods {
+    /// <summary>
+    /// 认证
+    /// </summary>
     internal class Auth : MethodBase<AccessToken> {
 
         public override string MethodName {
