@@ -25,19 +25,19 @@ namespace AsNum.BingTranslate.Api.Test {
                 To = "en",
                 Text = "建议开发者使用如下方法进行修复"
             };
-            var result = ApiClient.ExecuteWrap(method);
+            var result = ApiClient.ExecuteWrap(method).Result;
         }
 
         [TestMethod]
         public void SupportSpeakLang() {
             var method = new GetLanguagesForSpeak();
-            var result = ApiClient.ExecuteWrap(method);
+            var result = ApiClient.ExecuteWrap(method).Result;
         }
 
         [TestMethod]
         public void SupportTranslateLang() {
             var method = new GetLanguagesForTranslate();
-            var result = ApiClient.ExecuteWrap(method);
+            var result = ApiClient.ExecuteWrap(method).Result;
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace AsNum.BingTranslate.Api.Test {
                 Quality = AsNum.BingTranslate.Api.Methods.Speak.Qualities.Max
             };
 
-            var result = ApiClient.ExecuteWrap(method);
+            var result = ApiClient.ExecuteWrap(method).Result;
             using (var stm = new MemoryStream(result))
             using (var player = new SoundPlayer(stm)) {
                 player.Play();
@@ -60,7 +60,7 @@ namespace AsNum.BingTranslate.Api.Test {
             var method = new Detect() {
                 Text = "你好, friend"
             };
-            var result = ApiClient.ExecuteWrap(method);
+            var result = ApiClient.ExecuteWrap(method).Result;
         }
     }
 }

@@ -67,11 +67,12 @@ namespace AsNum.BingTranslate.Api.Methods {
             Min
         }
 
-        internal override string GetResult(ApiClient client) {
+        internal override async Task<string> GetResult(ApiClient client) {
             return "";
         }
 
-        public override byte[] Execute(ApiClient client) {
+
+        public override async Task<byte[]> Execute(ApiClient client) {
             var url = client.GetApiUrl(this);
             var dic = this.GetParams();
             foreach (var kv in dic) {
@@ -80,7 +81,8 @@ namespace AsNum.BingTranslate.Api.Methods {
 
             WebClient c = new WebClient();
             c.Headers.Add(HttpRequestHeader.Authorization, string.Format("Bearer {0}", client.Token.Token));
-            return c.DownloadData(url);
+            return Task.Run(() => c.DownloadData(url))
+                .ConfigureAwait(false).GetAwaiter().GetResult();
         }
     }
 }

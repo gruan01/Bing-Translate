@@ -62,7 +62,7 @@ namespace AsNum.BingTranslate.Api {
                 ClientID = this.ClientID,
                 ClientSecret = this.Secret
             };
-            this.Token = method.Execute(this);
+            this.Token = method.Execute(this).Result;
         }
 
         /// <summary>
@@ -84,14 +84,14 @@ namespace AsNum.BingTranslate.Api {
         /// <typeparam name="T"></typeparam>
         /// <param name="method"></param>
         /// <returns></returns>
-        public T Execute<T>(MethodBase<T> method) {
+        public async Task<T> Execute<T>(MethodBase<T> method) {
             //将方法在策略中包装
             var m = (MethodBase<T>)PolicyInjection.Wrap(method.GetType(), method);
-            return m.Execute(this);
+            return await m.Execute(this);
         }
 
-        public static T ExecuteWrap<T>(MethodBase<T> method) {
-            return ApiClient.GetInstance().Execute(method);
+        public static async Task<T> ExecuteWrap<T>(MethodBase<T> method) {
+            return await ApiClient.GetInstance().Execute(method);
         }
     }
 }

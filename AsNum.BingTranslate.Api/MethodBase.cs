@@ -68,7 +68,7 @@ namespace AsNum.BingTranslate.Api {
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
-        internal virtual string GetResult(ApiClient client) {
+        internal virtual async Task<string> GetResult(ApiClient client) {
             var url = client.GetApiUrl(this);
             var dic = this.GetParams();
             var rh = new RequestHelper(client.Cookies);
@@ -96,8 +96,8 @@ namespace AsNum.BingTranslate.Api {
         /// <param name="client"></param>
         /// <returns></returns>
         [NeedAuth]
-        public virtual TResult Execute(ApiClient client) {
-            this.ResultString = this.GetResult(client);
+        public virtual async Task<TResult> Execute(ApiClient client) {
+            this.ResultString = await this.GetResult(client);
 
             switch (this.ReturnType) {
                 case ReturnTypes.Json:
