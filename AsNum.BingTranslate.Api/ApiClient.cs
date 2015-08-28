@@ -89,5 +89,9 @@ namespace AsNum.BingTranslate.Api {
             var m = (MethodBase<T>)PolicyInjection.Wrap(method.GetType(), method);
             return m.Execute(this);
         }
+
+        public static T ExecuteWrap<T>(MethodBase<T> method) {
+            return ApiClient.GetInstance().Execute(method);
+        }
     }
 }

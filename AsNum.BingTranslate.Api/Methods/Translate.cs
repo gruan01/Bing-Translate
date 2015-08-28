@@ -16,13 +16,7 @@ namespace AsNum.BingTranslate.Api.Methods {
             }
         }
 
-        public override HttpMethods RequestType {
-            get {
-                return HttpMethods.Get;
-            }
-        }
-
-        [Param("text")]
+        [Param("text", Required = true)]
         public string Text {
             get;
             set;
@@ -35,10 +29,26 @@ namespace AsNum.BingTranslate.Api.Methods {
         }
 
 
-        [Param("to")]
+        [Param("to", Required = true)]
         public string To {
             get;
             set;
+        }
+
+
+        [EnumParam("contentType", EnumUseKeyOrValue.Key)]
+        public ContentTypes ContentType {
+            get;
+            set;
+        }
+
+
+        public enum ContentTypes {
+            [SpecifyKeyValue(Key = "text/plain")]
+            Plan,
+
+            [SpecifyKeyValue(Key = "text/html")]
+            Html
         }
     }
 }

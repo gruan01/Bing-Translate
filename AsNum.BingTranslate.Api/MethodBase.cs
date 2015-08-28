@@ -34,8 +34,10 @@ namespace AsNum.BingTranslate.Api {
         /// <summary>
         /// 请求方式
         /// </summary>
-        public abstract HttpMethods RequestType {
-            get;
+        public virtual HttpMethods RequestType {
+            get {
+                return HttpMethods.Get;
+            }
         }
 
         /// <summary>
