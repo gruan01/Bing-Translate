@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AsNum.BingTranslate.Api.Attributes {
+
+    /// <summary>
+    /// 需要认证
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class NeedAuthAttribute : HandlerAttribute {
 

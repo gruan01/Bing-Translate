@@ -4,16 +4,25 @@ using System.Linq;
 
 namespace AsNum.BingTranslate.Api.Attributes {
 
-    public enum EnumUseKeyOrValue {
-        Key,
+    public enum EnumUseNameOrValue {
+        Name,
         Value
     }
 
+
+    /// <summary>
+    /// 枚举参数
+    /// </summary>
     public class EnumParamAttribute : ParamAttribute {
 
-        private EnumUseKeyOrValue Use;
+        private EnumUseNameOrValue Use;
 
-        public EnumParamAttribute(string name, EnumUseKeyOrValue use)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">参数名</param>
+        /// <param name="use">使用枚举的名称还是值</param>
+        public EnumParamAttribute(string name, EnumUseNameOrValue use)
             : base(name) {
 
             this.Use = use;
@@ -25,12 +34,12 @@ namespace AsNum.BingTranslate.Api.Attributes {
                 var skv = value.GetType()
                         .GetField(value.ToString())
                         .GetCustomAttributes(false)
-                        .OfType<SpecifyKeyValueAttribute>().FirstOrDefault();
+                        .OfType<SpecifyNameValueAttribute>().FirstOrDefault();
 
                 if (skv != null) {
-                    value = this.Use == EnumUseKeyOrValue.Key ? (object)skv.Key : skv.Value;
+                    value = this.Use == EnumUseNameOrValue.Name ? (object)skv.Name : skv.Value;
                 } else {
-                    value = this.Use == EnumUseKeyOrValue.Key ? Enum.GetName(obj.GetType(), obj) : value;
+                    value = this.Use == EnumUseNameOrValue.Name ? Enum.GetName(obj.GetType(), obj) : value;
                 }
             }
 

@@ -37,13 +37,13 @@ namespace AsNum.BingTranslate.Api.Methods {
             set;
         }
 
-        [EnumParam("format", EnumUseKeyOrValue.Key)]
+        [EnumParam("format", EnumUseNameOrValue.Name)]
         public Formats? Format {
             get;
             set;
         }
 
-        [EnumParam("options", EnumUseKeyOrValue.Key)]
+        [EnumParam("options", EnumUseNameOrValue.Name)]
         public Qualities? Quality {
             get;
             set;
@@ -52,23 +52,23 @@ namespace AsNum.BingTranslate.Api.Methods {
 
 
         public enum Formats {
-            [SpecifyKeyValue(Key = "audio/wav")]
+            [SpecifyNameValue(Name = "audio/wav")]
             Wav,
 
-            [SpecifyKeyValue(Key = "audio/mp3")]
+            [SpecifyNameValue(Name = "audio/mp3")]
             Mp3
         }
 
         public enum Qualities {
-            [SpecifyKeyValue(Key = "MaxQuality")]
+            [SpecifyNameValue(Name = "MaxQuality")]
             Max,
 
-            [SpecifyKeyValue(Key = "MinSize")]
+            [SpecifyNameValue(Name = "MinSize")]
             Min
         }
 
         internal override async Task<string> GetResult(ApiClient client) {
-            return "";
+            return await Task.FromResult("");
         }
 
 
@@ -81,8 +81,8 @@ namespace AsNum.BingTranslate.Api.Methods {
 
             WebClient c = new WebClient();
             c.Headers.Add(HttpRequestHeader.Authorization, string.Format("Bearer {0}", client.Token.Token));
-            return Task.Run(() => c.DownloadData(url))
-                .ConfigureAwait(false).GetAwaiter().GetResult();
+            return await Task.Run(() => c.DownloadData(url))
+                .ConfigureAwait(false);//.GetAwaiter().GetResult();
         }
     }
 }

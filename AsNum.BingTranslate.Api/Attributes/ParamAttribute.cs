@@ -7,14 +7,23 @@ using System.Threading.Tasks;
 
 namespace AsNum.BingTranslate.Api.Attributes {
 
+    /// <summary>
+    /// 参数
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public class ParamAttribute : Attribute {
 
+        /// <summary>
+        /// 参数名
+        /// </summary>
         public string Name {
             get;
             private set;
         }
 
+        /// <summary>
+        /// 是否是必选参数, (注:本地并没有拿这个去验证参数)
+        /// </summary>
         public bool Required {
             get;
             set;

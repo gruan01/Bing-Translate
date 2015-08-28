@@ -36,7 +36,7 @@ namespace AsNum.BingTranslate.Api.Methods {
         }
 
 
-        [EnumParam("contentType", EnumUseKeyOrValue.Key)]
+        [EnumParam("contentType", EnumUseNameOrValue.Name)]
         public ContentTypes ContentType {
             get;
             set;
@@ -44,10 +44,10 @@ namespace AsNum.BingTranslate.Api.Methods {
 
 
         public enum ContentTypes {
-            [SpecifyKeyValue(Key = "text/plain")]
+            [SpecifyNameValue(Name = "text/plain")]
             Plan,
 
-            [SpecifyKeyValue(Key = "text/html")]
+            [SpecifyNameValue(Name = "text/html")]
             Html
         }
     }
